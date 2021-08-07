@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\AnnouncementCollection;
-use App\Http\Resources\AnnouncementResource;
-use App\Models\Announcement;
+use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class AnnouncementController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return new AnnouncementCollection(Announcement::all());
+        return new CategoryCollection(Category::all());
     }
 
     /**
@@ -38,29 +37,27 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        if($category = Category::findOrFail($request->category_id))
-            return new AnnouncementResource($category->announcements()->create($request->all()));
-        // return response()->json('created',201);
+        return new CategoryResource(Category::create($request->all()));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Announcement  $announcement
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Announcement $announcement)
+    public function show(Category $category)
     {
-        return new AnnouncementResource($announcement);
+        return new CategoryResource($category);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Announcement  $announcement
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Announcement $announcement)
+    public function edit(Category $category)
     {
         //
     }
@@ -69,13 +66,13 @@ class AnnouncementController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Announcement  $announcement
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Announcement $announcement)
+    public function update(Request $request, Category $category)
     {
-        if($announcement->update($request->all()))
-            return new AnnouncementResource($announcement);
+        if($category->update($request->all()))
+            return new CategoryResource($category);
         
         return response()->json(['message' => 'Error'], 400);
     }
@@ -83,13 +80,12 @@ class AnnouncementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Announcement  $announcement
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Announcement $announcement)
+    public function destroy(Category $category)
     {
-        if($announcement->delete())
+        if($category->delete())
             return response()->json('success',200);
-    
     }
 }

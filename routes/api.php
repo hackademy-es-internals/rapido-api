@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AnnouncementController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('announcements',AnnouncementController::class);
+Route::resource('categories',CategoryController::class);

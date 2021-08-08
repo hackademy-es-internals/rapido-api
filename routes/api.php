@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AnnouncementController;
 
@@ -22,5 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('announcements',AnnouncementController::class);
 Route::resource('categories',CategoryController::class);
+Route::resource('users',UserController::class);
 
 Route::get('/category/{category}/announcements/',[AnnouncementController::class,'byCategory'])->name('announcements.byCategory');

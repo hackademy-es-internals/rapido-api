@@ -17,7 +17,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return new AnnouncementCollection(Announcement::with('category')->get());
+        return new AnnouncementCollection(Announcement::with('category')->paginate(2));
     }
 
 

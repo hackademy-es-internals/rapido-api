@@ -24,6 +24,7 @@ class AnnouncementResource extends JsonResource
             'price' => $this->price,
             // 'category' => new CategoryResource($category),
             'category-detail' => route('categories.show',$category->id),
+            'self' => route('announcements.show',$this->id)
         ];
     }
 }

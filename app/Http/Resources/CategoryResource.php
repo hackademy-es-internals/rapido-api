@@ -23,7 +23,8 @@ class CategoryResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->name,
             // 'announcements'=> new AnnouncementCollection($announcements), 
-            'announcements-by-category'=>route('announcements.byCategory',$this->id)
+            'announcements-by-category'=>route('announcements.byCategory',$this->id),
+            'self' => route('categories.show',$this->id)
         ];
     }
 }

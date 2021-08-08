@@ -279,6 +279,16 @@
 								"name": "Content-Type",
 								"value": "application/x-www-form-urlencoded",
 								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -286,7 +296,7 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Goku Super Sayan",
+									"value": "House",
 									"type": "text"
 								}
 							]
@@ -440,6 +450,12 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYyODQzODczMSwiZXhwIjoxNjI4NDQyMzMxLCJuYmYiOjE2Mjg0Mzg3MzEsImp0aSI6IlhSU0VzSWtIbkN3YkUyVUIiLCJzdWIiOjUsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.beytGXupNxiGPOCOTXmDDJlEzP8ogcyCLvAx1wAaWyY"
 		}
 	]
 }

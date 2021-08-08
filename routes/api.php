@@ -28,8 +28,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::delete("users/{user}",[UserController::class,'destroy'])->name('users.destroy');
 
     Route::post("announcements",[AnnouncementController::class,'store'])->name('announcements.store');
-    Route::put("announcements/{announcements}",[AnnouncementController::class,'update'])->name('announcements.update');
-    Route::delete("announcements/{announcements}",[AnnouncementController::class,'destroy'])->name('announcements.destroy');
+    Route::put("announcements/{announcement}",[AnnouncementController::class,'update'])->name('announcements.update');
+    Route::delete("announcements/{announcement}",[AnnouncementController::class,'destroy'])->name('announcements.destroy');
 
     Route::post("categories",[CategoryController::class,'store'])->name('categories.store');
     Route::put("categories/{category}",[CategoryController::class,'update'])->name('categories.update');
@@ -42,9 +42,11 @@ Route::post('register', [UserController::class,'register'])->name('register');
 Route::post('login', [UserController::class,'authenticate'])->name('login');
 
 Route::get("announcements",[AnnouncementController::class,'index'])->name('announcements.index');
-Route::get("announcements/{announcements}",[AnnouncementController::class,'show'])->name('announcements.show');
+Route::get("announcements/{announcement}",[AnnouncementController::class,'show'])->name('announcements.show');
+
+// probably have to change behavior
+Route::get("announcements/category/{category}",[AnnouncementController::class,'byCategory'])->name('announcements.byCategory');
+Route::get("announcements/user/{user}",[AnnouncementController::class,'byUser'])->name('announcements.byUser');
 
 Route::get("categories",[CategoryController::class,'index'])->name('categories.index');
 Route::get("categories/{category}",[CategoryController::class,'show'])->name('categories.show');
-
-Route::get("categories/{category}/announcements/",[AnnouncementController::class,'byCategory'])->name('announcements.byCategory');

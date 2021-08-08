@@ -18,13 +18,15 @@ class AnnouncementResource extends JsonResource
     {
         $category = $this->whenLoaded('category');
         return [
-            'id' => $this->id,
             'title' => $this->title,
             'body' => $this->body,
             'price' => $this->price,
-            // 'category' => new CategoryResource($category),
-            'category-detail' => route('categories.show',$category->id),
-            'self' => route('announcements.show',$this->id)
+            'category' => $category->name,
+            'links' => [
+                'self' => route('announcements.show',$this->id),
+                'uri' => route('announcements.index'),
+                'category' => route('categories.show',$category->id)
+            ]
         ];
     }
 }

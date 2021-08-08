@@ -74,7 +74,7 @@ class AnnouncementController extends Controller
     
     }
 
-    public function getByCategory(Category $category)
+    public function byCategory(Category $category)
     {
         return new AnnouncementCollection($category->announcements);
     }

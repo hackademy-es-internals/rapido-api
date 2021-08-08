@@ -18,13 +18,13 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request)
     {  
-        $announcements = $this->whenLoaded('announcements');
         return [
-            'id'=>$this->id,
             'name'=>$this->name,
-            // 'announcements'=> new AnnouncementCollection($announcements), 
-            'announcements-by-category'=>route('announcements.byCategory',$this->id),
-            'self' => route('categories.show',$this->id)
+            'links' => [
+                'self' => route('categories.show',$this->id),
+                'uri' => route('categories.index'),
+                'announcements' => route('announcements.byCategory',$this->id)
+            ]
         ];
     }
 }

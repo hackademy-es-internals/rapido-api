@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Http\Resources\AnnouncementCollection;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\AnnouncementResource;
+use App\Http\Resources\CategoryCollection;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        AnnouncementResource::withoutWrapping();
+        AnnouncementCollection::withoutWrapping();
+        CategoryResource::withoutWrapping();
+        CategoryCollection::withoutWrapping();
     }
 }

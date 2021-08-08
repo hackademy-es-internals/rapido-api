@@ -12,7 +12,7 @@ class AnnouncementResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public static $wrap = 'announcement';
+    // public static $wrap = 'announcement';
 
     public function toArray($request)
     {

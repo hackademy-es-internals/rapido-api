@@ -16,14 +16,14 @@ class AnnouncementResource extends JsonResource
 
     public function toArray($request)
     {
+        $category = $this->whenLoaded('category');
         return [
             'id' => $this->id,
             'title' => $this->title,
             'body' => $this->body,
             'price' => $this->price,
-            // 'category' => new CategoryResource($this->category),
-            'category' => route('categories.show',$this->category->id),
-            'announcements-by-category' => route('annoucements.byCategory',$this->category->id),
+            // 'category' => new CategoryResource($category),
+            'category-detail' => route('categories.show',$category->id),
         ];
     }
 }

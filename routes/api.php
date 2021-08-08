@@ -23,4 +23,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('announcements',AnnouncementController::class);
 Route::resource('categories',CategoryController::class);
 
-Route::get('/category/{category}/announcements/',[AnnouncementController::class,'getByCategory'])->name('annoucements.byCategory');
+Route::get('/category/{category}/announcements/',[AnnouncementController::class,'getByCategory'])->name('announcements.byCategory');

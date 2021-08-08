@@ -17,7 +17,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return new AnnouncementCollection(Announcement::all());
+        return new AnnouncementCollection(Announcement::with('category')->get());
     }
 
 
@@ -42,7 +42,7 @@ class AnnouncementController extends Controller
      */
     public function show(Announcement $announcement)
     {
-        return new AnnouncementResource($announcement);
+        return new AnnouncementResource($announcement->loadMissing('category'));
     }
 
 

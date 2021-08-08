@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return new CategoryCollection(Category::all());
+        return new CategoryCollection(Category::with(['announcements']));
     }
 
     /**
@@ -38,7 +38,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return new CategoryResource($category);
+        return new CategoryResource($category->loadMissing(['announcements']));
     }
 
     /**

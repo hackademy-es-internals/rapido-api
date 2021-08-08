@@ -17,29 +17,34 @@ use App\Http\Controllers\AnnouncementController;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-Route::post('register', [UserController::class,'register'])->name('register');
-Route::post('login', [UserController::class,'authenticate'])->name('login');
+// Protected Routes
 
 Route::group(['middleware' => ['jwt.verify']], function() {
 
-    Route::post('user',[UserController::class,'getAuthenticatedUser']);
+    Route::get("users",[UserController::class,'index'])->name('users.index');
+    Route::get("users/{user}",[UserController::class,'show'])->name('users.show');
+    Route::post("users",[UserController::class,'getAuthenticatedUser']);
+    Route::put("users/{user}",[UserController::class,'update'])->name('users.update');
+    Route::delete("users/{user}",[UserController::class,'destroy'])->name('users.destroy');
 
     Route::post("announcements",[AnnouncementController::class,'store'])->name('announcements.store');
     Route::put("announcements/{announcements}",[AnnouncementController::class,'update'])->name('announcements.update');
     Route::delete("announcements/{announcements}",[AnnouncementController::class,'destroy'])->name('announcements.destroy');
 
+    Route::post("categories",[CategoryController::class,'store'])->name('categories.store');
+    Route::put("categories/{category}",[CategoryController::class,'update'])->name('categories.update');
+    Route::delete("categories/{category}",[CategoryController::class,'destroy'])->name('categories.destroy');
+    
 });
 
-// Route::resource('announcements',AnnouncementController::class);
+// Public Routes
+Route::post('register', [UserController::class,'register'])->name('register');
+Route::post('login', [UserController::class,'authenticate'])->name('login');
 
 Route::get("announcements",[AnnouncementController::class,'index'])->name('announcements.index');
 Route::get("announcements/{announcements}",[AnnouncementController::class,'show'])->name('announcements.show');
 
-Route::resource('categories',CategoryController::class);
-Route::resource('users',UserController::class);
+Route::get("categories",[CategoryController::class,'index'])->name('categories.index');
+Route::get("categories/{category}",[CategoryController::class,'show'])->name('categories.show');
 
-Route::get('/category/{category}/announcements/',[AnnouncementController::class,'byCategory'])->name('announcements.byCategory');
+Route::get("categories/{category}/announcements/",[AnnouncementController::class,'byCategory'])->name('announcements.byCategory');

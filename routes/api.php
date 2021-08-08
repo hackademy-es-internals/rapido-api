@@ -17,11 +17,28 @@ use App\Http\Controllers\AnnouncementController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('register', [UserController::class,'register'])->name('register');
+Route::post('login', [UserController::class,'authenticate'])->name('login');
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+
+    Route::post('user',[UserController::class,'getAuthenticatedUser']);
+
+    Route::post("announcements",[AnnouncementController::class,'store'])->name('announcements.store');
+    Route::put("announcements/{announcements}",[AnnouncementController::class,'update'])->name('announcements.update');
+    Route::delete("announcements/{announcements}",[AnnouncementController::class,'destroy'])->name('announcements.destroy');
+
 });
 
-Route::resource('announcements',AnnouncementController::class);
+// Route::resource('announcements',AnnouncementController::class);
+
+Route::get("announcements",[AnnouncementController::class,'index'])->name('announcements.index');
+Route::get("announcements/{announcements}",[AnnouncementController::class,'show'])->name('announcements.show');
+
 Route::resource('categories',CategoryController::class);
 Route::resource('users',UserController::class);
 

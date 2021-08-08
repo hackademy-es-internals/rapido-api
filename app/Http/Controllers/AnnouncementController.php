@@ -30,7 +30,7 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         if($category = Category::findOrFail($request->category_id))
-            return new AnnouncementResource($category->announcements()->create($request->all()));
+            return new AnnouncementResource($category->announcements()->create($request->all())->loadMissing('category'));
         // return response()->json('created',201);
     }
 

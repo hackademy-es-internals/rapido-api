@@ -20,15 +20,6 @@ class AnnouncementController extends Controller
         return new AnnouncementCollection(Announcement::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -54,16 +45,6 @@ class AnnouncementController extends Controller
         return new AnnouncementResource($announcement);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Announcement $announcement)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -91,5 +72,10 @@ class AnnouncementController extends Controller
         if($announcement->delete())
             return response()->json('success',200);
     
+    }
+
+    public function getByCategory(Category $category)
+    {
+        return new AnnouncementCollection($category->announcements);
     }
 }

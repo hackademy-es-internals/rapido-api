@@ -18,7 +18,6 @@ class AnnouncementResource extends JsonResource
     {
         $category = $this->whenLoaded('category');
         $user = $this->whenLoaded('user');
-        
         return [
             'title' => $this->title,
             'body' => $this->body,
@@ -28,7 +27,8 @@ class AnnouncementResource extends JsonResource
             'links' => [
                 'self' => route('announcements.show',$this->id),
                 'uri' => route('announcements.index'),
-                'category' => route('categories.show',$category->id)
+                'category' => route('categories.show',$category->id),
+                'user' => route('users.show',$user->id)
             ]
         ];
     }

@@ -19,6 +19,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
+        // with during a query
         return new AnnouncementCollection(Announcement::with(['category','user'])->paginate(2));
     }
 
@@ -37,6 +38,7 @@ class AnnouncementController extends Controller
             $announcement = $category->announcements()->create($request->all());
             $announcement->user()->associate($user);
             $announcement->save();
+            // loadmissing when model instance already exists
             return new AnnouncementResource($announcement->loadMissing(['category','user']));
         }
         // return response()->json('created',201);
@@ -84,6 +86,11 @@ class AnnouncementController extends Controller
 
     public function byCategory(Category $category)
     {
-        return new AnnouncementCollection($category->announcements);
+        return new AnnouncementCollection($category->announcements->loadMissing(['category','user']));
+    }
+
+    public function byUser(User $user)
+    {
+        return new AnnouncementCollection($user->announcements->loadMissing(['category','user']));
     }
 }

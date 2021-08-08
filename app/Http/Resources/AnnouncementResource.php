@@ -17,11 +17,14 @@ class AnnouncementResource extends JsonResource
     public function toArray($request)
     {
         $category = $this->whenLoaded('category');
+        $user = $this->whenLoaded('user');
+        
         return [
             'title' => $this->title,
             'body' => $this->body,
             'price' => $this->price,
             'category' => $category->name,
+            'user' => $user->name,
             'links' => [
                 'self' => route('announcements.show',$this->id),
                 'uri' => route('announcements.index'),

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\AnnouncementCollection;
-use App\Http\Resources\AnnouncementResource;
-use App\Models\Announcement;
+use App\Models\User;
 use App\Models\Category;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Resources\AnnouncementResource;
+use App\Http\Resources\AnnouncementCollection;
 
 class AnnouncementController extends Controller
 {
@@ -17,7 +19,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return new AnnouncementCollection(Announcement::with('category')->paginate(2));
+        return new AnnouncementCollection(Announcement::with(['category','user'])->paginate(2));
     }
 
 
@@ -29,8 +31,14 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        if($category = Category::findOrFail($request->category_id))
-            return new AnnouncementResource($category->announcements()->create($request->all())->loadMissing('category'));
+        $user = User::getAuthenticated(); 
+        
+        if($category = Category::findOrFail($request->category_id)){
+            $announcement = $category->announcements()->create($request->all());
+            $announcement->user()->associate($user);
+            $announcement->save();
+            return new AnnouncementResource($announcement->loadMissing(['category','user']));
+        }
         // return response()->json('created',201);
     }
 
@@ -42,7 +50,7 @@ class AnnouncementController extends Controller
      */
     public function show(Announcement $announcement)
     {
-        return new AnnouncementResource($announcement->loadMissing('category'));
+        return new AnnouncementResource($announcement->loadMissing(['category','user']));
     }
 
 

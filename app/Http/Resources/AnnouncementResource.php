@@ -22,8 +22,6 @@ class AnnouncementResource extends JsonResource
             'title' => $this->title,
             'body' => $this->body,
             'price' => $this->price,
-            'category' => $category->name,
-            'user' => $user->name,
             'links' => [
                 'self' => route('announcements.show',$this->id),
                 'uri' => route('announcements.index'),

@@ -20,7 +20,7 @@ class AnnouncementController extends Controller
     public function index()
     {
         // with during a query
-        return new AnnouncementCollection(Announcement::with(['category','user'])->paginate(2));
+        return new AnnouncementCollection(Announcement::with(['category','user']));
     }
 
 

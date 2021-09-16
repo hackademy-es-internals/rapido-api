@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AnnouncementResource extends JsonResource
@@ -22,6 +23,8 @@ class AnnouncementResource extends JsonResource
             'title' => $this->title,
             'body' => $this->body,
             'price' => $this->price,
+            'user' => new UserResource($user),
+            'category' => new CategoryResource($category),
             'links' => [
                 'self' => route('announcements.show',$this->id),
                 'uri' => route('announcements.index'),

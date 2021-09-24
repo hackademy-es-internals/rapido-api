@@ -19,7 +19,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        // with during a query
+        // with(): lazy loading during a query
         return new AnnouncementCollection(Announcement::with(['category','user'])->get());
     }
 
@@ -34,14 +34,14 @@ class AnnouncementController extends Controller
     {
         $user = User::getAuthenticated(); 
         
-        if($category = Category::findOrFail($request->category_id)){
-            $announcement = $category->announcements()->create($request->all());
-            $announcement->user()->associate($user);
-            $announcement->save();
-            // loadmissing when model instance already exists
-            return new AnnouncementResource($announcement->loadMissing(['category','user']));
-        }
-        // return response()->json('created',201);
+        $category = Category::findOrFail($request->category_id);
+            
+        $announcement = $category->announcements()->create($request->all());
+        $announcement->user()->associate($user);
+        $announcement->save();
+        // loadmissing when model instance already exists
+        // https://laravel.com/docs/8.x/eloquent-collections#method-loadMissing
+        return new AnnouncementResource($announcement->loadMissing(['category','user']));
     }
 
     /**
@@ -68,7 +68,7 @@ class AnnouncementController extends Controller
         if($announcement->update($request->all()))
             return new AnnouncementResource($announcement);
         
-        return response()->json(['message' => 'Error'], 400);
+        return response()->json(['message' => 'Error'], 500);
     }
 
     /**
@@ -80,7 +80,10 @@ class AnnouncementController extends Controller
     public function destroy(Announcement $announcement)
     {
         if($announcement->delete())
-            return response()->json('success',200);
+            return response()->json(['message' => 'Accepted'],200);
+        
+        return response()->json(['message' => 'Error'],500);
+        
     
     }
 

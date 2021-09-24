@@ -23,10 +23,10 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
+                return response()->json(['message' => 'invalid_credentials'], 400);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json(['message' => 'could_not_create_token'], 500);
         }
         return response()->json(compact('token'));
     }
@@ -35,14 +35,14 @@ class UserController extends Controller
     {
         try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
-                    return response()->json(['user_not_found'], 404);
+                    return response()->json(['message'=>'user_not_found'], 404);
             }
             } catch (TokenExpiredException $e) {
-                    return response()->json(['token_expired'], $e->getStatusCode());
+                    return response()->json(['message' =>'token_expired'], $e->getStatusCode());
             } catch (TokenInvalidException $e) {
-                    return response()->json(['token_invalid'], $e->getStatusCode());
+                    return response()->json(['message' =>'token_invalid'], $e->getStatusCode());
             } catch (JWTException $e) {
-                    return response()->json(['token_absent'], $e->getStatusCode());
+                    return response()->json(['message' =>'token_absent'], $e->getStatusCode());
             }
         return new UserResource($user);
     }
@@ -108,7 +108,7 @@ class UserController extends Controller
         if($user->update($request->all()))
             return new UserResource($user);
         
-        return response()->json(['message' => 'Error'], 400);
+        return response()->json(['message' => 'Error'], 500);
     }
 
     /**
@@ -120,6 +120,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if($user->delete())
-            return response()->json('success',200);
+            return response()->json(['message' =>'success'],200);
+        
+        return response()->json(['message' => 'Error'], 500);
+        
     }
 }

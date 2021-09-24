@@ -53,7 +53,7 @@ class CategoryController extends Controller
         if($category->update($request->all()))
             return new CategoryResource($category);
         
-        return response()->json(['message' => 'Error'], 400);
+        return response()->json(['message' => 'Error'], 500);
     }
 
     /**
@@ -66,5 +66,8 @@ class CategoryController extends Controller
     {
         if($category->delete())
             return response()->json('success',200);
+        
+        return response()->json(['message' => 'Error'], 500);
+        
     }
 }

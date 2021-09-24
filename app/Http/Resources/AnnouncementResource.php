@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Category;
 use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AnnouncementResource extends JsonResource
@@ -17,6 +19,7 @@ class AnnouncementResource extends JsonResource
 
     public function toArray($request)
     {
+        // https://laravel.com/docs/8.x/eloquent-resources#conditional-relationships
         $category = $this->whenLoaded('category');
         $user = $this->whenLoaded('user');
         return [
@@ -28,8 +31,8 @@ class AnnouncementResource extends JsonResource
             'links' => [
                 'self' => route('announcements.show',$this->id),
                 'uri' => route('announcements.index'),
-                'category' => route('categories.show',$category->id),
-                'user' => route('users.show',$user->id)
+                'category' => $category instanceof Category ? route('categories.show',$category->id) : "",
+                'user' => $user instanceof User ? route('users.show',$user->id) : ""
             ]
         ];
     }

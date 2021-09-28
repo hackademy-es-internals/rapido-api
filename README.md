@@ -40,7 +40,7 @@ Ex.
 Autorization:Bearer\ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMjgzNTc5NiwiZXhwIjoxNjMyODM5Mzk2LCJuYmYiOjE2MzI4MzU3OTYsImp0aSI6ImtiMUYyaTdxU2hZRHJUYmMiLCJzdWIiOjE0OCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.nUSXLXhIPUtp4spIvm1W9jWWAqmF96voE_vprq3Bw3g
 
 ### Protected Routes:
-USERS
+__USERS__
 
 Retrieve the current logged user  
 
@@ -62,7 +62,7 @@ Delete a specific user by id
 
 `http DELETE localhost:8000/api/users/140 Accept:application/json Authorization:Bearer\ your-token`
 
-ANNOUCEMENTS  
+__ANNOUCEMENTS__  
 
 Create a new announcement  
 
@@ -76,7 +76,7 @@ Delete an announcement
 
 `http -f DELETE localhost:8000/api/announcements/359 Accept:application/json Authorization:Bearer\ your-token`
 
-CATEGORIES  
+__CATEGORIES__  
 
 Create a new category  
 

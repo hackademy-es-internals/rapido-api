@@ -42,58 +42,77 @@ Autorization:Bearer\ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC
 ### Protected Routes:
 USERS
 
-Retrieve the current logged user
+Retrieve the current logged user  
+
 `http -f POST localhost:8000/api/users/authenticated Accept:application/json Authorization:Bearer\ your-token`
 
-Retrieve all users
+Retrieve all users  
+
 `http localhost:8000/api/users Accept:application/json Authorization:Bearer\ your-token`
 
-Retrieve a specific user by id
+Retrieve a specific user by id  
+
 `http localhost:8000/api/users/140 Accept:application/json Authorization:Bearer\ your-token`
 
-Update a specific user by id
+Update a specific user by id  
+
 `http PUT localhost:8000/api/users/140 name=newname email=newemail@email.com Accept:application/json Authorization:Bearer\ your-token`
 
-Delete a specific user by id
+Delete a specific user by id  
+
 `http DELETE localhost:8000/api/users/140 Accept:application/json Authorization:Bearer\ your-token`
 
-ANNOUCEMENTS
-Create a new announcement
+ANNOUCEMENTS  
+
+Create a new announcement  
+
 `http -f POST localhost:8000/api/announcements title='super moto' body='best used moto in marketplace' price=3000 category_id=8 Accept:application/json Authorization:Bearer\ your-token`
 
-Update an announcement
+Update an announcement  
+
 `http -f PUT localhost:8000/api/announcements/359 title='super motorbike' body='best used moto in used marketplace' price=3500 category_id=8 Accept:application/json Authorization:Bearer\ your-token`
 
-Delete an announcement
+Delete an announcement  
+
 `http -f DELETE localhost:8000/api/announcements/359 Accept:application/json Authorization:Bearer\ your-token`
 
-CATEGORIES
-Create a new category
+CATEGORIES  
+
+Create a new category  
+
 `http -f POST localhost:8000/api/category name=books Accept:application/json Authorization:Bearer\ your-token`
 
-Update an category
+Update an category  
+
 `http -f PUT localhost:8000/api/category/8 name=book Accept:application/json Authorization:Bearer\ your-token`
 
-Delete an category
+Delete an category  
+
 `http -f DELETE localhost:8000/api/category/8 Accept:application/json Authorization:Bearer\ your-token`
 
 ### Public Routes
 For these routes jwt token is not necessary
 
-Retrieve all announcements
+Retrieve all announcements  
+
 `http localhost:8000/api/announcements Accept:application/json`
 
-Retrieve a specific announcement by id
+Retrieve a specific announcement by id  
+
 `http localhost:8000/api/announcements/328 Accept:application/json`
 
-Retrieve announcements by category
+Retrieve announcements by category  
+
 `http localhost:8000/api/announcements/category/8 Accept:application/json`
 
-Retrieve announcement by user
+Retrieve announcement by user  
+
 `http localhost:8000/api/announcements/user/140 Accept:application/json`
 
-Retrieve all categories
+Retrieve all categories  
+
 `http localhost:8000/api/categories Accept:application/json`
 
-Retrieve a specific category by id
+Retrieve a specific category by id  
+
 `http localhost:8000/api/categories/8 Accept:application/json`

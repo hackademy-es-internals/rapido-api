@@ -1,12 +1,12 @@
 # Rapido Api for rapido.es js client
 ## Launch the program
-- composer install
-- cp .env.exampl .env
-- php artisan key:generate
+- `composer install`
+- `cp .env.exampl .env`
+- `php artisan key:generate`
 - create a database and edit .env information DB_
-- php artisan migrate
-- php artisan db:seed
-- php artisan serve
+- `php artisan migrate`
+- `php artisan db:seed`
+- `php artisan serve`
 
 ## Test con POSTMAN
 In order to test the project download Postman and import rapidoApi_postman_collection.json included in this project root, then:
@@ -31,9 +31,9 @@ Download httpie for terminal, install it and then copy and paste the following c
 
 - First of all register or login to obtain a jwt token in response, you can set your own name and email (and password)
 
-http -f POST localhost:8000/api/register name=nico email=test@test.com password=12345678 password_confirmation=12345678 Accept:application/json
+`http -f POST localhost:8000/api/register name=nico email=test@test.com password=12345678 password_confirmation=12345678 Accept:application/json`
 
-http -f POST localhost:8000/api/login name=nico email=test@test.com password=12345678 Accept:application/json 
+`http -f POST localhost:8000/api/login name=nico email=test@test.com password=12345678 Accept:application/json` 
 
 - After that you can use protected routes setting the header in this way: Autorization:Bearer\ your-token
 Ex.
@@ -43,57 +43,57 @@ Autorization:Bearer\ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC
 USERS
 
 Retrieve the current logged user
-http -f POST localhost:8000/api/users/authenticated Accept:application/json Authorization:Bearer\ your-token
+`http -f POST localhost:8000/api/users/authenticated Accept:application/json Authorization:Bearer\ your-token`
 
 Retrieve all users
-http localhost:8000/api/users Accept:application/json Authorization:Bearer\ your-token
+`http localhost:8000/api/users Accept:application/json Authorization:Bearer\ your-token`
 
 Retrieve a specific user by id
-http localhost:8000/api/users/140 Accept:application/json Authorization:Bearer\ your-token
+`http localhost:8000/api/users/140 Accept:application/json Authorization:Bearer\ your-token`
 
 Update a specific user by id
-http PUT localhost:8000/api/users/140 name=newname email=newemail@email.com Accept:application/json Authorization:Bearer\ your-token
+`http PUT localhost:8000/api/users/140 name=newname email=newemail@email.com Accept:application/json Authorization:Bearer\ your-token`
 
 Delete a specific user by id
-http DELETE localhost:8000/api/users/140 Accept:application/json Authorization:Bearer\ your-token
+`http DELETE localhost:8000/api/users/140 Accept:application/json Authorization:Bearer\ your-token`
 
 ANNOUCEMENTS
 Create a new announcement
-http -f POST localhost:8000/api/announcements title='super moto' body='best used moto in marketplace' price=3000 category_id=8 Accept:application/json Authorization:Bearer\ your-token
+`http -f POST localhost:8000/api/announcements title='super moto' body='best used moto in marketplace' price=3000 category_id=8 Accept:application/json Authorization:Bearer\ your-token`
 
 Update an announcement
-http -f PUT localhost:8000/api/announcements/359 title='super motorbike' body='best used moto in used marketplace' price=3500 category_id=8 Accept:application/json Authorization:Bearer\ your-token
+`http -f PUT localhost:8000/api/announcements/359 title='super motorbike' body='best used moto in used marketplace' price=3500 category_id=8 Accept:application/json Authorization:Bearer\ your-token`
 
 Delete an announcement
-http -f DELETE localhost:8000/api/announcements/359 Accept:application/json Authorization:Bearer\ your-token
+`http -f DELETE localhost:8000/api/announcements/359 Accept:application/json Authorization:Bearer\ your-token`
 
 CATEGORIES
 Create a new category
-http -f POST localhost:8000/api/category name=books Accept:application/json Authorization:Bearer\ your-token
+`http -f POST localhost:8000/api/category name=books Accept:application/json Authorization:Bearer\ your-token`
 
 Update an category
-http -f PUT localhost:8000/api/category/8 name=book Accept:application/json Authorization:Bearer\ your-token
+`http -f PUT localhost:8000/api/category/8 name=book Accept:application/json Authorization:Bearer\ your-token`
 
 Delete an category
-http -f DELETE localhost:8000/api/category/8 Accept:application/json Authorization:Bearer\ your-token
+`http -f DELETE localhost:8000/api/category/8 Accept:application/json Authorization:Bearer\ your-token`
 
 ### Public Routes
 For these routes jwt token is not necessary
 
 Retrieve all announcements
-http localhost:8000/api/announcements Accept:application/json
+`http localhost:8000/api/announcements Accept:application/json`
 
 Retrieve a specific announcement by id
-http localhost:8000/api/announcements/328 Accept:application/json
+`http localhost:8000/api/announcements/328 Accept:application/json`
 
 Retrieve announcements by category
-http localhost:8000/api/announcements/category/8 Accept:application/json
+`http localhost:8000/api/announcements/category/8 Accept:application/json`
 
 Retrieve announcement by user
-http localhost:8000/api/announcements/user/140 Accept:application/json
+`http localhost:8000/api/announcements/user/140 Accept:application/json`
 
 Retrieve all categories
-http localhost:8000/api/categories Accept:application/json
+`http localhost:8000/api/categories Accept:application/json`
 
 Retrieve a specific category by id
-http localhost:8000/api/categories/8 Accept:application/json
+`http localhost:8000/api/categories/8 Accept:application/json`

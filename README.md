@@ -1,4 +1,12 @@
 # Rapido Api for rapido.es js client
+## Launch the program
+- composer install
+- cp .env.exampl .env
+- php artisan key:generate
+- create a database and edit .env information DB_
+- php artisan migrate
+- php artisan db:seed
+- php artisan serve
 
 ## Test con POSTMAN
 In order to test the project download Postman and import rapidoApi_postman_collection.json included in this project root, then:
@@ -31,7 +39,7 @@ http -f POST localhost:8000/api/login name=nico email=test@test.com password=123
 Ex.
 Autorization:Bearer\ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMjgzNTc5NiwiZXhwIjoxNjMyODM5Mzk2LCJuYmYiOjE2MzI4MzU3OTYsImp0aSI6ImtiMUYyaTdxU2hZRHJUYmMiLCJzdWIiOjE0OCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.nUSXLXhIPUtp4spIvm1W9jWWAqmF96voE_vprq3Bw3g
 
-## Protected Routes:
+### Protected Routes:
 USERS
 
 Retrieve the current logged user
@@ -69,7 +77,7 @@ http -f PUT localhost:8000/api/category/8 name=book Accept:application/json Auth
 Delete an category
 http -f DELETE localhost:8000/api/category/8 Accept:application/json Authorization:Bearer\ your-token
 
-## Public Routes
+### Public Routes
 For these routes jwt token is not necessary
 
 Retrieve all announcements
